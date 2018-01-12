@@ -12,7 +12,7 @@ import {reduxForm as immutableReduxForm, reducer as immutableReducer} from 'redu
 import {NumericField} from '../src'
 import {NumericField as ImmutableNumericField} from '../src/immutable'
 
-const Input = ({input: inputProps, innerRef, ...props}): React.Node => <input {...inputProps} {...props} ref={innerRef} />
+const Input = ({input: inputProps, ...props}): React.Node => <input {...inputProps} {...props} />
 
 function min(threshold: number): (value: number) => ?string {
   return (value: number) => {
@@ -226,13 +226,11 @@ describe('NumericField', () => {
     it('normalizes when enter is pressed', () => {
       const store = createStore(combineReducers({form: reducer}))
 
-      let input
       const Form = reduxForm({form: 'form'})(() => (
         <form>
           <NumericField
             name="hello"
             component={Input}
-            innerRef={c => input = c}
           />
         </form>
       ))

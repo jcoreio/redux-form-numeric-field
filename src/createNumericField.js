@@ -1,13 +1,18 @@
 // @flow
 
 import * as React from 'react'
+import type {FieldProps} from 'redux-form'
 
 type NumberNormalizer = (value: ?(string | number)) => ?(string | number)
 type Validator = (value: any, allValues: Object, props: Object) => ?any
 const WHITESPACE = /^\s*$/
 
 
-function createNumericField<P: {validate?: Validator | Array<Validator>, normalizeOnBlur?: Function}>(
+function createNumericField<P: {
+  validate?: Validator | Array<Validator>,
+  normalizeOnBlur?: Function,
+  component: React.ElementType | Function | string,
+}>(
   Field: React.ComponentType<P>
 ): React.ComponentType<P & {normalizeNumber?: NumberNormalizer}> {
   type Props = React.ElementProps<typeof Field> & {normalizeNumber?: NumberNormalizer}
@@ -46,14 +51,13 @@ function createNumericField<P: {validate?: Validator | Array<Validator>, normali
       }
     }
 
-    KeyDownHandler = ({input, onKeyDown, ...props}) => {
+    KeyDownHandler = ({input, onKeyDown, ...props}: FieldProps & {onKeyDown?: (event: Event) => any}): React.Node => {
       const Comp = this.props.component
-
       return (
         <Comp
           {...props}
           input={input}
-          onKeyDown={(event: KeyEvent) => {
+          onKeyDown={(event: Event) => {
             const normalizeNumber = this.props.normalizeNumber || defaultNormalize
             if (event.keyCode === 13) {
               input.onChange(normalizeNumber(input.value))
