@@ -52,6 +52,6 @@ If you provide this, it will be called with the output of `normalizeNumber`.
 
 #### `validate?: Validator | Array<Validator>`
 
-Unlike a normal `Field`, `NumericField` will call your validators with the normalized number from
+Unlike a normal `Field`, `NumericField` will call your validators with the normalized value from
 `normalizeNumber`.  If its value is an invalid number but not whitespace, it will produce a
 "must be a number" validation error without calling your own validators.

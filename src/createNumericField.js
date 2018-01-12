@@ -36,8 +36,7 @@ function createNumericField<P: {
     validate = (value: any, allValues: Object, props: Object): ?string => {
       const normalizeNumber = this.props.normalizeNumber || defaultNormalize
       const normalized = normalizeNumber(value)
-      if (typeof normalized === 'string') {
-        if (WHITESPACE.test(normalized)) return
+      if (typeof normalized === 'string' && !WHITESPACE.test(normalized)) {
         return 'must be a number'
       }
       const {validate} = this.props
