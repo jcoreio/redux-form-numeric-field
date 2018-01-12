@@ -12,7 +12,7 @@ import {reduxForm as immutableReduxForm, reducer as immutableReducer} from 'redu
 import {NumericField} from '../src'
 import {NumericField as ImmutableNumericField} from '../src/immutable'
 
-const Input = ({input: props}): React.Node => <input {...props} />
+const Input = ({input: inputProps, innerRef, ...props}): React.Node => <input {...inputProps} {...props} ref={innerRef} />
 
 function min(threshold: number): (value: number) => ?string {
   return (value: number) => {
@@ -222,6 +222,31 @@ describe('NumericField', () => {
       expect(comp.update().find('input').prop('value')).to.equal(' 23.4 ')
       comp.update().find(Input).simulate('blur')
       expect(comp.update().find('input').prop('value')).to.equal(46.8)
+    })
+    it('normalizes when enter is pressed', () => {
+      const store = createStore(combineReducers({form: reducer}))
+
+      let input
+      const Form = reduxForm({form: 'form'})(() => (
+        <form>
+          <NumericField
+            name="hello"
+            component={Input}
+            innerRef={c => input = c}
+          />
+        </form>
+      ))
+
+      const comp = mount(
+        <Provider store={store}>
+          <Form />
+        </Provider>
+      )
+
+      comp.find(Input).simulate('focus')
+      comp.find(Input).simulate('change', {target: {value: ' 23.4 '}})
+      comp.update().find(Input).simulate('keydown', {keyCode: 13})
+      expect(comp.update().find('input').prop('value')).to.equal(23.4)
     })
   }
   describe('pojo', () => tests({NumericField, reducer, reduxForm}))

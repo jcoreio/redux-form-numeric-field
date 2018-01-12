@@ -6,6 +6,7 @@ type NumberNormalizer = (value: ?(string | number)) => ?(string | number)
 type Validator = (value: any, allValues: Object, props: Object) => ?any
 const WHITESPACE = /^\s*$/
 
+
 function createNumericField<P: {validate?: Validator | Array<Validator>, normalizeOnBlur?: Function}>(
   Field: React.ComponentType<P>
 ): React.ComponentType<P & {normalizeNumber?: NumberNormalizer}> {
@@ -45,9 +46,27 @@ function createNumericField<P: {validate?: Validator | Array<Validator>, normali
       }
     }
 
+    KeyDownHandler = ({input, onKeyDown, ...props}) => {
+      const Comp = this.props.component
+
+      return (
+        <Comp
+          {...props}
+          input={input}
+          onKeyDown={(event: KeyEvent) => {
+            const normalizeNumber = this.props.normalizeNumber || defaultNormalize
+            if (event.keyCode === 13) {
+              input.onChange(normalizeNumber(input.value))
+            }
+            if (onKeyDown) onKeyDown(event)
+          }}
+        />
+      )
+    }
+
     render(): React.Node {
       const {
-        normalizeNumber, // eslint-disable-line no-unused-vars
+        normalizeNumber, component, // eslint-disable-line no-unused-vars
         ...props
       } = this.props
       return (
@@ -55,6 +74,7 @@ function createNumericField<P: {validate?: Validator | Array<Validator>, normali
           {...props}
           validate={this.validate}
           normalizeOnBlur={this.normalizeOnBlur}
+          component={this.KeyDownHandler}
         />
       )
     }
