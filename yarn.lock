@@ -4846,8 +4846,8 @@ redeyed@~1.0.0:
     esprima "~3.0.0"
 
 redux-form-normalize-on-blur@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/redux-form-normalize-on-blur/-/redux-form-normalize-on-blur-1.0.0.tgz#c1054cf3bc99b2842437c6ce5b534a6c2a7bf2e3"
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/redux-form-normalize-on-blur/-/redux-form-normalize-on-blur-1.0.1.tgz#56715c631c3e708c979300fb0d50a5fb0c631c9c"
   dependencies:
     prop-types "^15.0.0"
 

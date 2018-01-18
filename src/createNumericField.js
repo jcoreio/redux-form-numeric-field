@@ -2,17 +2,12 @@
 
 import * as React from 'react'
 import type {FieldProps} from 'redux-form'
+import typeof {Field} from 'redux-form-normalize-on-blur'
 
 type NumberNormalizer = (value: ?(string | number)) => ?(string | number)
-type Validator = (value: any, allValues: Object, props: Object) => ?any
 const WHITESPACE = /^\s*$/
 
-
-function createNumericField<P: {
-  validate?: Validator | Array<Validator>,
-  normalizeOnBlur?: Function,
-  component: React.ElementType | Function | string,
-}>(
+function createNumericField<P: React.ElementProps<Field>>(
   Field: React.ComponentType<P>
 ): React.ComponentType<P & {normalizeNumber?: NumberNormalizer}> {
   type Props = React.ElementProps<typeof Field> & {normalizeNumber?: NumberNormalizer}
