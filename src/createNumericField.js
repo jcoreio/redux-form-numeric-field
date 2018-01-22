@@ -28,7 +28,7 @@ function createNumericField<P: React.ElementProps<Field>>(
       return normalizeOnBlur ? normalizeOnBlur(result) : result
     }
 
-    validate = (value: any, allValues: Object, props: Object): ?string => {
+    validate = (value: any, allValues: any, props: Object, name: string): ?string => {
       const normalizeNumber = this.props.normalizeNumber || defaultNormalize
       const normalized = normalizeNumber(value)
       if (typeof normalized === 'string' && !WHITESPACE.test(normalized)) {
@@ -37,11 +37,11 @@ function createNumericField<P: React.ElementProps<Field>>(
       const {validate} = this.props
       if (Array.isArray(validate)) {
         for (let validator of validate) {
-          const result = validator(normalized, allValues, props)
+          const result = validator(normalized, allValues, props, name)
           if (result) return result
         }
       } else if (validate) {
-        return validate(normalized, allValues, props)
+        return validate(normalized, allValues, props, name)
       }
     }
 

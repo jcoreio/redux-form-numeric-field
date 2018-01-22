@@ -1,6 +1,7 @@
 [ignore]
 <PROJECT_ROOT>/node_modules/fbjs/.*
 <PROJECT_ROOT>/node_modules/.*/tests?/.*\.json
+<PROJECT_ROOT>/lib
 
 [include]
 ./src
