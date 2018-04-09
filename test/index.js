@@ -1,6 +1,8 @@
 // @flow
 
 import * as React from 'react'
+import get from 'lodash.get'
+import {Iterable} from 'immutable'
 import {describe, it} from 'mocha'
 import {createStore, combineReducers} from 'redux'
 import {Provider} from 'react-redux'
@@ -24,6 +26,10 @@ function max(threshold: number): (value: number) => ?string {
   return (value: number) => {
     if (value > threshold) return `must be <= ${threshold}`
   }
+}
+
+function getIn(obj: any, path: any): any {
+  return Iterable.isIterable(obj) ? obj.getIn(path) : get(obj, path)
 }
 
 describe('NumericField', () => {
@@ -102,6 +108,7 @@ describe('NumericField', () => {
       comp.update().find(Input).simulate('blur')
       expect(comp.update().find('input').prop('value')).to.equal('')
       expect(comp.update().find(Input).prop('meta').error).not.to.exist
+      expect(getIn(store.getState().form, ['form', 'values', 'hello'])).to.equal(null)
     })
     it('supports single validate function', () => {
       const store = createStore(combineReducers({form: reducer}))

@@ -13,9 +13,8 @@ function createNumericField<P: React.ElementProps<Field>>(
   type Props = React.ElementProps<typeof Field> & {normalizeNumber?: NumberNormalizer}
 
   function defaultNormalize(value: ?(string | number)): ?(string | number) {
-    if (value == null || typeof value === 'number' || WHITESPACE.test(value)) {
-      return typeof value === 'string' ? value.trim() : value
-    }
+    if (value == null || WHITESPACE.test((value: any))) return null
+    if (typeof value === 'number') return value
     const parsed = Number(value)
     return Number.isFinite(parsed) ? parsed : value.trim()
   }
