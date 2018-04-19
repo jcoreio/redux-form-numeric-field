@@ -52,7 +52,7 @@ function createNumericField<P: React.ElementProps<Field>>(
           input={input}
           onKeyDown={(event: Event) => {
             const normalizeNumber = this.props.normalizeNumber || defaultNormalize
-            if (event.keyCode === 13) {
+            if ((event: any).keyCode === 13) {
               input.onChange(normalizeNumber(input.value))
             }
             if (onKeyDown) onKeyDown(event)
