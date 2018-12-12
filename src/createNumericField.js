@@ -1,16 +1,18 @@
 // @flow
 
 import * as React from 'react'
-import type {FieldProps} from 'redux-form'
-import typeof {Field} from 'redux-form-normalize-on-blur'
+import type { FieldProps } from 'redux-form'
+import typeof { Field } from 'redux-form-normalize-on-blur'
 
 type NumberNormalizer = (value: ?(string | number)) => ?(string | number)
 const WHITESPACE = /^\s*$/
 
 function createNumericField<P: React.ElementProps<Field>>(
   Field: React.ComponentType<P>
-): React.ComponentType<P & {normalizeNumber?: NumberNormalizer}> {
-  type Props = React.ElementProps<typeof Field> & {normalizeNumber?: NumberNormalizer}
+): React.ComponentType<P & { normalizeNumber?: NumberNormalizer }> {
+  type Props = React.ElementProps<typeof Field> & {
+    normalizeNumber?: NumberNormalizer,
+  }
 
   function defaultNormalize(value: ?(string | number)): ?(string | number) {
     if (value == null || WHITESPACE.test((value: any))) return null
@@ -21,19 +23,24 @@ function createNumericField<P: React.ElementProps<Field>>(
 
   return class NumericField extends React.Component<Props> {
     normalizeOnBlur = (value: any): any => {
-      const {normalizeOnBlur} = this.props
+      const { normalizeOnBlur } = this.props
       const normalizeNumber = this.props.normalizeNumber || defaultNormalize
       const result = normalizeNumber(value)
       return normalizeOnBlur ? normalizeOnBlur(result) : result
     }
 
-    validate = (value: any, allValues: any, props: Object, name: string): ?string => {
+    validate = (
+      value: any,
+      allValues: any,
+      props: Object,
+      name: string
+    ): ?string => {
       const normalizeNumber = this.props.normalizeNumber || defaultNormalize
       const normalized = normalizeNumber(value)
       if (typeof normalized === 'string' && !WHITESPACE.test(normalized)) {
         return 'must be a number'
       }
-      const {validate} = this.props
+      const { validate } = this.props
       if (Array.isArray(validate)) {
         for (let validator of validate) {
           const result = validator(normalized, allValues, props, name)
@@ -44,14 +51,19 @@ function createNumericField<P: React.ElementProps<Field>>(
       }
     }
 
-    KeyDownHandler = ({input, onKeyDown, ...props}: FieldProps & {onKeyDown?: (event: Event) => any}): React.Node => {
+    KeyDownHandler = ({
+      input,
+      onKeyDown,
+      ...props
+    }: FieldProps & { onKeyDown?: (event: Event) => any }): React.Node => {
       const Comp = this.props.component
       return (
         <Comp
           {...props}
           input={input}
           onKeyDown={(event: Event) => {
-            const normalizeNumber = this.props.normalizeNumber || defaultNormalize
+            const normalizeNumber =
+              this.props.normalizeNumber || defaultNormalize
             if ((event: any).keyCode === 13) {
               input.onChange(normalizeNumber(input.value))
             }
@@ -63,7 +75,8 @@ function createNumericField<P: React.ElementProps<Field>>(
 
     render(): React.Node {
       const {
-        normalizeNumber, component, // eslint-disable-line no-unused-vars
+        normalizeNumber, // eslint-disable-line no-unused-vars
+        component, // eslint-disable-line no-unused-vars
         ...props
       } = this.props
       return (
