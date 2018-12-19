@@ -49,7 +49,7 @@ correctly-formatted `string`, return a `number`; otherwise, return a `string` or
 
 #### `normalizeOnBlur?: (value: ?(string | number)) => ?(string | number)`
 
-If you provide this, it will be called with the output of `normalizeNumber`.
+If you provide this, it will be called with the output of `normalizeNumber` when the field loses focus.
 
 #### `validate?: Validator | Array<Validator>`
 
