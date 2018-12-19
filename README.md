@@ -7,9 +7,8 @@
 [![npm version](https://badge.fury.io/js/redux-form-numeric-field.svg)](https://badge.fury.io/js/redux-form-numeric-field)
 
 A customized `redux-form` `Field` for entering numbers. It isn't contrary; it won't stop you from typing, pasting, or cutting
-any characters.
-When it loses focus it will normalize its value to a number, if valid; otherwise it will trim its value but leave it as a string,
-and produce a "must be a number" validation error.
+any characters, though it will produce a "must be a number" validation error immediately if the current input is invalid.
+When it loses focus it will normalize its value to a number, if valid; otherwise it will trim its value but leave it as a string.
 
 ## Usage
 
