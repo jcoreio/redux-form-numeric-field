@@ -29,10 +29,11 @@ const { NumericField } = require('redux-form-numeric-field/immutable')
 
 ## Example
 
-The following field will trim its text when it loses focus:
+The following field will normalize its value to a number when it loses focus
+(unless the text is not a valid number, in which case it will just trim the text when it loses focus).
 
 ```js
-<NumericField name="name" component={YourInputComponent} />
+<NumericField name="value" component={YourInputComponent} />
 ```
 
 ## API
