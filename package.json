@@ -3,8 +3,6 @@
   "version": "0.0.0-development",
   "description": "a customized redux-form Field for entering numbers",
   "main": "index.js",
-  "module": "es/index.js",
-  "modules.root": "es",
   "sideEffects": false,
   "scripts": {
     "lint": "eslint src test --cache",
