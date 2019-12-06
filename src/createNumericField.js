@@ -7,10 +7,13 @@ import type { Props as FieldInputProps } from 'redux-form/lib/FieldProps.types'
 type NumberNormalizer = (value: ?(string | number)) => ?(string | number)
 const WHITESPACE = /^\s*$/
 
-function createNumericField<P: FieldInputProps>(
-  Field: React.ComponentType<P>
+function createNumericField(
+  Field: React.ComponentType<FieldInputProps & { normalizeOnBlur?: Function }>
 ): React.ComponentType<
-  P & { normalizeOnBlur?: Function, normalizeNumber?: NumberNormalizer }
+  FieldInputProps & {
+    normalizeOnBlur?: Function,
+    normalizeNumber?: NumberNormalizer,
+  }
 > {
   type Props = FieldInputProps & {
     normalizeOnBlur?: Function,

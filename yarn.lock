@@ -7846,9 +7846,9 @@ redeyed@~2.1.0:
     esprima "~4.0.0"
 
 redux-form-normalize-on-blur@^1.0.0:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/redux-form-normalize-on-blur/-/redux-form-normalize-on-blur-1.0.6.tgz#4b832dd03fd31eec94acb87bc976940aac0e6f01"
-  integrity sha512-ayqzFosP9BFuUP/LffLHhJktk97+c48pMXUFfSUPeVLtQppGqntTwjQs6lbEU26dKeDu1Qkf0SThL0B/m3BXFQ==
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/redux-form-normalize-on-blur/-/redux-form-normalize-on-blur-1.0.7.tgz#2dc26a203b55b3ad9818e406453d012e832188b0"
+  integrity sha512-XPgBrkb57dCjcQyP9sVCQrm0SRFQQ6pTAue1aDVRK12sCOi76yQmsJKALr9U3qixvBTWLyuoTXknhwarIQt4Cw==
   dependencies:
     "@babel/runtime" "^7.1.5"
     prop-types "^15.0.0"
