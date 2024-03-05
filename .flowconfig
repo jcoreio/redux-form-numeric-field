@@ -6,6 +6,12 @@
 <PROJECT_ROOT>/node_modules/.*/tests?/.*\.json
 <PROJECT_ROOT>/node_modules/immutable/dist/immutable.js.flow
 <PROJECT_ROOT>/node_modules/.*/config-chain/.*
+<PROJECT_ROOT>/node_modules/.*/es-abstract/.*
+<PROJECT_ROOT>/dist/.*
+.*/malformed_package_json/.*
+
+[declarations]
+<PROJECT_ROOT>/node_modules/.*/redux-form/.*
 
 [include]
 ./src

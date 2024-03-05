@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import type { FieldProps } from 'redux-form'
-import type { Props as FieldInputProps } from 'redux-form/lib/FieldProps.types'
+import type { Props as FieldInputProps } from 'redux-form/lib/FieldProps.types.js.flow'
 
 type NumberNormalizer = (value: ?(string | number)) => ?(string | number)
 const WHITESPACE = /^\s*$/

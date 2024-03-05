@@ -49,7 +49,7 @@ declare module 'redux' {
       preloadedState: S,
       enhancer?: StoreEnhancer<S, A, D>
     ): Store<S, A, D>,
-    ...,
+    ...
   }
 
   declare export type StoreEnhancer<S, A, D = Dispatch<A>> = (
@@ -73,7 +73,7 @@ declare module 'redux' {
   declare export type ActionCreator<A, B> = (...args: Array<B>) => A
   declare export type ActionCreators<K, A> = {
     [key: K]: ActionCreator<A, any>,
-    ...,
+    ...
   }
 
   declare export function bindActionCreators<
