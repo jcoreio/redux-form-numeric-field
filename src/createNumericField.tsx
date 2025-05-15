@@ -6,7 +6,9 @@ type NumberNormalizer = (
 ) => (string | number) | null | undefined
 const WHITESPACE = /^\s*$/
 
-type AdditionalProps = { input: { onKeyDown: React.KeyboardEventHandler<any> } }
+type AdditionalProps = {
+  input: { onKeyDown?: React.KeyboardEventHandler<any> }
+}
 
 type InputProps = BaseFieldProps<AdditionalProps> & {
   normalizeOnBlur?: any
