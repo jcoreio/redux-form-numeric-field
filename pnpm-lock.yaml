@@ -12,8 +12,8 @@ dependencies:
     specifier: ^15.0.0
     version: 15.6.2
   redux-form-normalize-on-blur:
-    specifier: ^1.1.1
-    version: 1.1.1(react@18.2.0)(redux-form@8.3.10)
+    specifier: ^1.1.2
+    version: 1.1.2(react@18.2.0)(redux-form@8.3.10)
 
 devDependencies:
   '@babel/plugin-syntax-flow':
@@ -7163,8 +7163,8 @@ packages:
       esprima: 4.0.1
     dev: true
 
-  /redux-form-normalize-on-blur@1.1.1(react@18.2.0)(redux-form@8.3.10):
-    resolution: {integrity: sha512-DT6gnOorGSMWqciDV1cQTRy8xwiA1GrZZEGHczC9HteQ4/PLbLy4pemTOiDxiAY+C/wUJRiUuoXcUJJvvH8TUQ==}
+  /redux-form-normalize-on-blur@1.1.2(react@18.2.0)(redux-form@8.3.10):
+    resolution: {integrity: sha512-OOoZgWQGTb5CwkjqqeIU8a4HS1+z3O8hplN0Jzd4UBYlyA7yRCaoEjrtIBBeraIDRKBt8frKl30Glc0I6Roxnw==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0

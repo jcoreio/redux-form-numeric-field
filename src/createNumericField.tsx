@@ -10,14 +10,15 @@ type AdditionalProps = {
   input: { onKeyDown?: React.KeyboardEventHandler<any> }
 }
 
-type InputProps = BaseFieldProps<AdditionalProps> & {
+// eslint-disable-next-line @typescript-eslint/ban-types
+type BaseNumericFieldProps<P = {}> = BaseFieldProps<P & AdditionalProps> & {
   normalizeOnBlur?: any
   normalizeNumber?: NumberNormalizer
 }
 
 export default function createNumericField(
   Field: React.ComponentType<BaseFieldProps<AdditionalProps>>
-): React.ComponentType<InputProps> {
+) {
   function defaultNormalize(
     value?: (string | number) | null
   ): (string | number) | null | undefined {
@@ -27,7 +28,9 @@ export default function createNumericField(
     return Number.isFinite(parsed) ? parsed : value.trim()
   }
 
-  return class NumericField extends React.Component<InputProps> {
+  return class NumericField<
+    P extends BaseNumericFieldProps = BaseNumericFieldProps
+  > extends React.Component<P> {
     normalizeOnBlur = (value: any): any => {
       const { normalizeOnBlur } = this.props
       const normalizeNumber = this.props.normalizeNumber || defaultNormalize
